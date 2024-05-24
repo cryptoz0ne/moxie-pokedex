@@ -1,0 +1,10 @@
+const apiEndpoint = 'https://pokeapi.co/api/v2/pokemon'
+
+export const getpokemonList = () => {
+  return new Promise((resolve, reject) => {
+    fetch(`${apiEndpoint}?limit=12&offset=0`)
+      .then(res => res.json())
+      .then(data => resolve(data))
+      .catch(error => reject(error))
+  })
+}
