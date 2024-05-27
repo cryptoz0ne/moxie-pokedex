@@ -14,8 +14,8 @@ function List() {
   }, [])
 
   const fetchData = async () => {
-    let response = await getPokemonList()
-    setPokemonList(response.results)
+    const { results } = await getPokemonList()
+    setPokemonList(results)
     setIsLoading(false)
   }
 
@@ -25,6 +25,7 @@ function List() {
 
   return (
     <div className='flex flex-wrap gap-6 justify-center'>
+      <h1 className="text-3xl w-full text-center">Pokeman List</h1>
       {isLoading
         ? <div className='flex justify-center items-center w-full'>
             <Loader /> <span className="text-gray-600">Loading...</span>
@@ -32,7 +33,7 @@ function List() {
         : pokemonList.map(({ name, url }) => (
           <Link
             key={name}
-            className="flex flex-col items-center w-full sm:w-4/12 md:w-3/12 rounded-md overflow-hidden shadow-lg"
+            className="flex flex-col items-center w-full sm:w-4/12 md:w-3/12 rounded-md overflow-hidden shadow-lg transition duration-500 hover:scale-[1.05]"
             to={`pokemon/${name}`}
           >
             <img
